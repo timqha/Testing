@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+  <title>Testing</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+  <script src="bower_components/ng-rating/js/ng-rating.js"></script>
+
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="js/app.js"></script>
+  <!-- Controller -->
+  <script src="js/controller/HomeController.js"></script>
+  <script src="js/controller/LoginController.js"></script>
+  <script src="js/controller/RegisterController.js"></script>
+  <!-- Service -->
+  <script src="js/service/LoginService.js"></script>
+  <script src="js/service/RegisterService.js"></script>
+  <script src="js/service/ReviewService.js"></script>
+  <script src="js/service/ProductService.js"></script>
+  <script src="js/service/StorageService.js"></script>
+  <!-- Config -->
+  <script src="js/config/config.js"></script>
+  <script src="js/config/routing.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="bower_components/angular-toastr/dist/angular-toastr.css"/>
+  <link rel="stylesheet" type="text/css" href="bower_components/ng-rating/css/ng-rating.css"/>
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/fonts.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="navbar-fixed-top">
+  <div class="container">
+    <div class="row">
+      <!--<div class="brand">-->
+      <!--ComicSæll-->
+      <!--</div>-->
+      <nav>
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="fa fa-bars"></span>
+            </button>
+            <a class="brand" href="#home">ComicSæll</a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right" ng-controller="LoginController">
+              <li ng-show="!currentUser"><a ui-sref="login"><span class="fa fa-user-plus"></span> Login</a></li>
+              <li ng-show="currentUser"><a href="#" ng-click="logout()"><span class="fa fa-sign-out"></span> Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<!-- Content -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="content">
+      <div ui-view></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

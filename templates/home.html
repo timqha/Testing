@@ -1,0 +1,265 @@
+<div class="goods">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="title">
+          Rare figurines
+        </div>
+      </div>
+      <!-- show products -->
+      <div ng-repeat="product in products">
+        <!-- block with good  -->
+        <div class="col-md-4" ng-show="!showDetails">
+          <div class="block" id="block" ng-mouseenter="show = ! show" ng-mouseleave="show = ! show">
+            <!-- hover-block-->
+            <div class="overlay-block" ng-show="show">
+              <div class="col-sm-offset-6 col-sm-3">
+                <div class="row">
+                  <div class="my-cart">
+                    <a href="#shopping">
+                      <span class="fa fa-shopping-cart"></span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="row">
+                  <div class="my-view">
+                    <a href="#search">
+                      <a href="#" ng-click="showDetails = ! showDetails">
+                        <span class="fa fa-search"></span>
+                      </a>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- - hover-block-->
+            <figure>
+              <img class="image" src="{{product.img}}" alt="toys">
+              <figcaption>
+                {{product.title}}
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+        <!-- - block with good  -->
+        <!-- block with details goods-->
+        <div class="col-md-12" ng-show="showDetails">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="caption">{{product.title}}</div>
+              <div class="dart">
+                <img class="img-full" src="{{product.img}}" alt="toys">
+              </div>
+
+            </div>
+            <div class="col-md-6">
+              <div class="text">
+                <div class="row">
+                  <div class="col-md-9">
+                    <h3>Product Description</h3>
+                  </div>
+                  <div class="col-md-3">
+                    <a href="#" ng-click="showDetails = ! showDetails">
+                      <span class="fa fa-times close-red"></span>
+                    </a>
+                  </div>
+                </div>
+                <div>
+                  {{product.text}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row margin-bottom">
+            <!-- create review -->
+            <div class="col-md-6 my-review">
+              <form name="reviewForm">
+                <div class="col-md-12">
+                  <div class="rate">
+                    <ng-rating ng-model="review.rate" editable="true"></ng-rating>
+                  </div>
+                  <span ng-show="reviewForm.text.$touched && reviewForm.text.$invalid">
+                    <h4>The review is required.</h4>
+                  </span>
+                  <textarea name="text" ng-model="review.text" placeholder="Type your review..." required></textarea>
+                </div>
+                <div class="col-md-12">
+                  <button ng-click="createReview(product.id)">Submit Review</button>
+                </div>
+              </form>
+            </div>
+            <!-- - create review -->
+            <!-- send review -->
+            <div class="col-md-6">
+              <div class="caption">Reviews</div>
+              <div class="message" ng-repeat="review in product.reviews">
+                <div class="username">
+                  {{review.created_by.username}} at {{review.created_at}}
+                </div>
+                <div class="text">
+                  {{review.text}}
+                  <div class="text-rate">Rate: {{review.rate}}</div>
+                </div>
+              </div>
+            </div>
+            <!-- -send review -->
+          </div>
+        </div>
+        <!-- -block with details goods -->
+      </div>
+      <!-- - show products -->
+    </div>
+  </div>
+</div>
+
+
+<!--
+<div class="goods">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="title">
+          Rare figurines
+        </div>
+      </div>
+      &lt;!&ndash; block with good  &ndash;&gt;
+      <div class="col-md-4" ng-show="!showDetails">
+        <div class="block" id="block" ng-mouseenter="hover(show)" ng-mouseleave="hover(show)" >
+            &lt;!&ndash; hover-block&ndash;&gt;
+            <div class="overlay-block" ng-show="show">
+              <div class="col-sm-offset-6 col-sm-3">
+                <div class="row">
+                  <div class="my-cart">
+                    <a href="#shopping">
+                      <span class="fa fa-shopping-cart"></span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="row">
+                  <div class="my-view">
+                    <a href="#search">
+                      <a href="#" ng-click="showDetails = ! showDetails">
+                        <span class="fa fa-search"></span>
+                      </a>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            &lt;!&ndash; - hover-block&ndash;&gt;
+            <figure>
+              <img src="img/goods/batman_the_joker_mms_dx_1k6_hot_toys_5_tuos.com.ua-800x800.jpg" alt="toys">
+              <figcaption>
+                Title goods
+              </figcaption>
+            </figure>
+        </div>
+      </div>
+      &lt;!&ndash; - block with good  &ndash;&gt;
+      &lt;!&ndash; block with good  &ndash;&gt;
+      <div class="col-md-4">
+        <div class="block">
+          <div class="overlay-block"></div>
+          <figure>
+            <img src="img/goods/2.jpg" alt="toys">
+            <figcaption>
+              Title goods
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+      &lt;!&ndash; - block with good  &ndash;&gt;
+      &lt;!&ndash; block with good  &ndash;&gt;
+      <div class="col-md-4">
+        <div class="block">
+          <div class="overlay-block"></div>
+          <figure>
+            <img src="img/goods/3.jpg" alt="toys">
+            <figcaption>
+              Title goods
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+      &lt;!&ndash; - block with good  &ndash;&gt;
+      &lt;!&ndash; block with details goods&ndash;&gt;
+      <div class="col-md-12" ng-show="showDetails">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="caption">Title goods</div>
+            <img class="img-full" src="img/goods/3.jpg" alt="toys">
+            <div class="rate">*****</div>
+          </div>
+          <div class="col-md-6">
+              <div class="text">
+                <h3>Product Description</h3>
+                <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet cupiditate enim et facere illum iste
+                  itaque non nostrum quos veritatis. Accusantium consequatur consequuntur hic non quibusdam quis
+                  repudiandae tempora voluptas.
+                </div>
+                <div>At delectus dignissimos doloremque, eius hic omnis quam ut. Cumque debitis dolorem iusto laboriosam
+                  maiores omnis perspiciatis quia repellat tenetur veritatis? Ab aliquam doloribus, eum neque nulla quas
+                  repudiandae vitae!
+                </div>
+                <div>Architecto aut, dicta error facere minus ratione voluptates. Ab accusamus aut beatae culpa cum dolor
+                  doloribus eius fuga fugiat inventore nam non, quas saepe sed tempora tempore tenetur vitae voluptates.
+                </div>
+                <div>Aperiam dolore doloremque doloribus eum fugit, ipsa laboriosam porro quaerat, quam rerum saepe sunt
+                  tempora. Aliquam amet consequuntur doloremque doloribus eius exercitationem facilis, ipsum maxime natus
+                  quaerat quidem quod, saepe.
+                </div>
+                <div>Aliquid animi, atque aut beatae cumque delectus doloribus dolorum eos ex, exercitationem, facere
+                  incidunt laboriosam magni mollitia nam neque nisi obcaecati pariatur porro sapiente tempore velit vitae.
+                  Dolorum, praesentium, sed?
+                </div>
+                <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet cupiditate enim et facere illum iste
+                  itaque non nostrum quos veritatis. Accusantium consequatur consequuntur hic non quibusdam quis
+                  repudiandae tempora voluptas.
+                </div>
+                <div>At delectus dignissimos doloremque, eius hic omnis quam ut. Cumque debitis dolorem iusto laboriosam
+                  maiores omnis perspiciatis quia repellat tenetur veritatis? Ab aliquam doloribus, eum neque nulla quas
+                  repudiandae vitae!
+                </div>
+                <div>Architecto aut, dicta error facere minus ratione voluptates. Ab accusamus aut beatae culpa cum dolor
+                  doloribus eius fuga fugiat inventore nam non, quas saepe sed tempora tempore tenetur vitae voluptates.
+                </div>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          &lt;!&ndash; create review &ndash;&gt;
+          <div class="col-md-6 my-review">
+            <div class="col-md-12">
+              <textarea name="" id="" placeholder="Type your review..."></textarea>
+            </div>
+            <div class="col-md-12">
+              <button>Submit Review</button>
+            </div>
+          </div>
+          &lt;!&ndash; - create review &ndash;&gt;
+          &lt;!&ndash; send review &ndash;&gt;
+          <div class="col-md-6">
+            <div class="caption">Reviews</div>
+            <div class="message">
+              <div class="username">
+                Pete
+              </div>
+              <div class="text">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio sint velit veritatis! Ad aliquid aspernatur ducimus ex harum iusto laboriosam nobis obcaecati quidem temporibus! Nisi non nostrum recusandae sint tempore?
+                <div class="text-rate">Rate: 5</div>
+              </div>
+            </div>
+          </div>
+          &lt;!&ndash; -send review &ndash;&gt;
+        </div>
+      </div>
+      &lt;!&ndash; -block with details goods &ndash;&gt;
+    </div>
+  </div>
+</div>
+-->
+
