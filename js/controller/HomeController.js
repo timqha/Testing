@@ -1,4 +1,9 @@
 angular.module('myApp')
+
+    /** @description Manages products and give reviews, adding new user reviews.
+     * @summary {getProduct} receipt of the products reviews.
+     * @summary {createReview} add review.
+     */
     .controller('HomeController', ['$scope', 'Product', 'toastr', 'Review', '$rootScope', 'Config', function ($scope, Product, toastr, Review, $rootScope, Config) {
         $scope.products = {};
 
@@ -9,12 +14,13 @@ angular.module('myApp')
                     Review.getReview(product.id)
                         .then(function (res) {
                             product.img = Config.getImage(product.img);
-                            product.reviews = res;
+                            product.reviews = res.reverse();
                         })
                         .catch(function (res) {
                             toastr.warning("No data", "Warning");
                         });
                 });
+
             })
             .catch(function (response) {
                 toastr.warning("No data", "Warning");
@@ -22,10 +28,12 @@ angular.module('myApp')
         //Review.getReview()
         $scope.review = {rate: 0, text: null};
 
-        $scope.createReview = function (id) {
+
+        $scope.createReview = function (product) {
             if ($rootScope.currentUser) {
-                Review.addNewReview(id, $scope.review)
+                Review.addNewReview(product.id, $scope.review)
                     .then(function (res) {
+                        product.reviews.unshift($scope.review);
                         $scope.review = {rate: 0, text: null};
                     })
                     .catch(function (res) {

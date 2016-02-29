@@ -16,13 +16,11 @@ angular.module('myApp')
 
         //response success
         Config.handleSuccess = function (response) {
-            console.log(response);
             return ( response.data);
         };
 
         //response error . $q defer problem
         Config.handleError = function (response) {
-            console.log(response);
             //  var deferred = $q.defer();
             if (!angular.isObject(response.data) || !response.data.message) {
                 return ( $q.reject("An unknown error occurred.") );

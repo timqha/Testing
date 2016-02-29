@@ -1,7 +1,14 @@
 angular.module('myApp')
-    .controller('RegisterController', ['$scope', 'Register', 'toastr', 'Storage', function ($scope, Register, toastr, Storage) {
+    /** @description adding a new user.
+     * @summary {register} adding a new user and redirect.
+     */
+    .controller('RegisterController', ['$scope', 'Register', 'toastr', 'Storage', '$state', function ($scope, Register, toastr, Storage, $state) {
         $scope.user = {username: null, password: null};
         $scope.repeatpass = null;
+
+        /** @description sign up and writing in a cookie.
+         * @param {string, string}  takes username and password to login.
+         */
         $scope.register = function () {
             if ($scope.repeatpass == $scope.user.password) {
 
@@ -10,6 +17,7 @@ angular.module('myApp')
                         if (data.success) {
                             toastr.success(data.message);
                             Storage.tokenSave(data.token);
+                            $state.go('home');
                         } else {
                             toastr.warning(data.message, "Warning");
                         }
@@ -23,5 +31,5 @@ angular.module('myApp')
                     });
             }
         };
-        //Object {success: true, token: "2daa9cd1d0c9535d480695cf7672c26b6c9bdfa0"}
+
     }]);

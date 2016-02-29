@@ -1,4 +1,11 @@
 angular.module('myApp')
+
+    /** @description service to work with localstorage.
+     * @param {tokenSave} save token of localstorage.
+     * @param {tokenReset} remove token of localstorage.
+     * @param {tokenGet} get token of localstorage
+     */
+
     .service("Storage", ['localStorageService', 'toastr', '$http', '$rootScope', function (localStorageService, toastr, $http, $rootScope) {
 
         return ({
